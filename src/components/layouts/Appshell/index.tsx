@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 import Navbar from '../navbar';
+import Footer from '../footer';
+import styles from './appshell.module.css';
 
 const disableNavbar = ["/auth/login", "/auth/register", "/404"];
 
@@ -12,9 +14,10 @@ const Appshell = (props : AppshellProps) => {
     const { pathname } = useRouter();
     
     return (
-    <main>
+    <main className={styles.container}>
       {!disableNavbar.includes(pathname) && <Navbar />}
-      {children}
+      <div className={styles.content}>{children}</div>
+      {!disableNavbar.includes(pathname) && <Footer />}
     </main>
   );
 }
